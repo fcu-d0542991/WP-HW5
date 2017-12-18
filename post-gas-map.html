@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+var location1 = '地址:407台中市西屯區青海路二段211號';
+var location2 = '地址:407台中市西屯區河南路二段341號';
+var location3 = '地址:407台中市西屯區河南路2段268號';
+var location4 = '地址:407台中市西屯區文華路100號';
+var location5 = '地址:407台中市西屯區黎明路三段130號';
+var map;
+function initMap() {
+map = new google.maps.Map(document.getElementById('map'), {
+zoom: 16,
+center: new google.maps.LatLng(24.178795, 120.646),
+mapTypeId: 'roadmap'
+});
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var icons = {
+parking: {
+icon: iconBase + 'parking_lot_maps.png'
+},
+info: {
+icon: iconBase + 'info-i_maps.png'
+}
+};
+var features = [
+{
+position: new google.maps.LatLng(24.171569, 120.643877),
+type: 'info'
+}, {
+position: new google.maps.LatLng(24.172358, 120.645455),
+type: 'info'
+}, {
+position: new google.maps.LatLng(24.175581, 120.649160),
+type: 'parking'
+}, {
+position: new google.maps.LatLng(24.178557, 120.646884),
+type: 'parking'
+}, {
+position: new google.maps.LatLng(24.176910, 120.637689),
+type: 'parking'
+}
+];
+// Create markers.
+features.forEach(function(feature) {
+var marker = new google.maps.Marker({
+position: feature.position,
+icon: icons[feature.type].icon,
+map: map
+});
+});
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVzeYipfPzJuiHOUEu1CNUy9cYuaLBHaY&callback=initMap">
+</script>
+</body>
+</html>
